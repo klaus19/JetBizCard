@@ -68,7 +68,8 @@ fun createBizCard(){
                     color = Color.White,
                     thickness = 10.dp
                 )
-               Column(modifier = Modifier.padding(5.dp)) {
+               Column(modifier = Modifier.padding(10.dp)
+               ) {
                    Text(text = "Tejas K",
                    style = MaterialTheme.typography.h4,
                        color = Color.White,
