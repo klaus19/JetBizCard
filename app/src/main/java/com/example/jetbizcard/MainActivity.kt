@@ -68,22 +68,16 @@ fun createBizCard(){
                     color = Color.White,
                     thickness = 10.dp
                 )
-               Column(modifier = Modifier.padding(10.dp)
-               ) {
-                   Text(text = "Tejas K",
-                   style = MaterialTheme.typography.h4,
-                       color = Color.White,
-                   )
-                   Text(text = "Android Compose Programmer",
-                       modifier = Modifier.padding(3.dp),
-                       style = MaterialTheme.typography.subtitle1
-                   )
-                   Text(text = "@tejaskHARTUDE",
-                       modifier = Modifier.padding(3.dp),
-                       style = MaterialTheme.typography.subtitle2
-                   )
-                   
-               }
+                createInfo()
+                Button(
+                    onClick = {
+
+                    }
+                ) {
+                    Text(text = "Portfolio",
+                    style = MaterialTheme.typography.button)
+
+                }
                 
             }
            
@@ -93,6 +87,30 @@ fun createBizCard(){
         
     }
 }
+
+ @Composable
+ private fun createInfo() {
+     Column(
+         modifier = Modifier.padding(10.dp)
+     ) {
+         Text(
+             text = "Tejas K",
+             style = MaterialTheme.typography.h4,
+             color = Color.White,
+         )
+         Text(
+             text = "Android Compose Programmer",
+             modifier = Modifier.padding(5.dp),
+             style = MaterialTheme.typography.subtitle1
+         )
+         Text(
+             text = "@tejaskHARTUDE",
+             modifier = Modifier.padding(5.dp),
+             style = MaterialTheme.typography.subtitle2
+         )
+
+     }
+ }
 
  @Composable
  private fun createImageprofile(modifier: Modifier=Modifier) {
