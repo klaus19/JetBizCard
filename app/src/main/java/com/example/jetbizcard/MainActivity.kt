@@ -1,12 +1,13 @@
  package com.example.jetbizcard
 
-import android.graphics.Color
-import android.graphics.Color.*
+
+import android.graphics.Color.rgb
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
@@ -15,9 +16,16 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight.Companion.Bold
+import androidx.compose.ui.text.font.FontWeight.Companion.ExtraBold
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.jetbizcard.ui.theme.JetBizCardTheme
 
 class MainActivity : ComponentActivity() {
@@ -41,24 +49,44 @@ class MainActivity : ComponentActivity() {
 fun createBizCard(){
     Surface(modifier = Modifier
         .fillMaxWidth()
-        .fillMaxHeight()) {
+        .fillMaxHeight()
+        ) {
         Card(modifier = Modifier
             .width(200.dp)
             .height(390.dp)
-            .padding(12.dp),
+            .padding(12.dp)
+           ,
             shape = RoundedCornerShape(corner = CornerSize(15.dp)),
-            backgroundColor =androidx.compose.ui.graphics.Color.White,
         elevation = 4.dp) {
-            Column(modifier = Modifier.height(300.dp),
+            Column(modifier = Modifier
+                .height(300.dp)
+                .background(color = Color(rgb(151, 196, 184))),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally) {
                 createImageprofile()
                 Divider(
-                    modifier = Modifier,
-                    androidx.compose.ui.graphics.Color.Cyan,
-                    thickness = 1.dp,
+                    color = Color.White,
+                    thickness = 10.dp
                 )
+               Column(modifier = Modifier.padding(5.dp)) {
+                   Text(text = "Tejas K",
+                   style = MaterialTheme.typography.h4,
+                       color = Color.White,
+                   )
+                   Text(text = "Android Compose Programmer",
+                       modifier = Modifier.padding(3.dp),
+                       style = MaterialTheme.typography.subtitle1
+                   )
+                   Text(text = "@tejaskHARTUDE",
+                       modifier = Modifier.padding(3.dp),
+                       style = MaterialTheme.typography.subtitle2
+                   )
+                   
+               }
+                
             }
+           
+            
 
         }
         
