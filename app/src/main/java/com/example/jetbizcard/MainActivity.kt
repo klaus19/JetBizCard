@@ -10,23 +10,23 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight.Companion.Bold
-import androidx.compose.ui.text.font.FontWeight.Companion.ExtraBold
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextDirection.Companion.Content
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.jetbizcard.ui.theme.JetBizCardTheme
 
 class MainActivity : ComponentActivity() {
@@ -48,6 +48,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun createBizCard(){
+    val buttonClickedstate = remember {
+        mutableStateOf(false)
+    }
     Surface(modifier = Modifier
         .fillMaxWidth()
         .fillMaxHeight()
@@ -72,12 +75,19 @@ fun createBizCard(){
                 createInfo()
                 Button(
                     onClick = {
-                        Log.d("Clicked", "createBizCard:Clicked ")
+                       buttonClickedstate.value = !buttonClickedstate.value
                     }
                 ) {
                     Text(text = "Portfolio",
                     style = MaterialTheme.typography.button)
 
+                }
+                if(buttonClickedstate.value){
+                    Content
+                }else{
+                    Box() {
+                        
+                    }
                 }
                 
             }
@@ -85,6 +95,48 @@ fun createBizCard(){
         
     }
 }
+
+ @Preview
+ @Composable
+ fun create(){
+
+    Box(modifier = Modifier
+        .fillMaxHeight()
+        .fillMaxHeight()
+        .padding(5.dp)) {
+
+        Surface(modifier = Modifier
+            .padding(3.dp)
+            .fillMaxWidth()
+            .fillMaxHeight(),
+            shape = RoundedCornerShape(corner = CornerSize(6.dp)),
+            border = BorderStroke(2.dp,color=Color.LightGray)) {
+
+            Portfolio(values = listOf<String>("Project1",
+                "Project2",
+                "Project3",
+                "Project1",
+                "Project2",
+                "Project3")
+            )
+
+        }
+
+    }
+
+
+
+ }
+
+ @Composable
+ fun Portfolio( values: List<String>) {
+      LazyColumn{
+          items(values) { item ->
+                Text(item)
+
+          }
+      }
+ }
 
  @Composable
  private fun createInfo() {
@@ -131,9 +183,9 @@ fun createBizCard(){
      }
  }
 
- @Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
+ //@Preview(showBackground = true)
+ @Composable
+ fun DefaultPreview() {
     JetBizCardTheme {
           createBizCard()
     }
