@@ -3,6 +3,7 @@
 
 import android.graphics.Color.rgb
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -71,7 +72,7 @@ fun createBizCard(){
                 createInfo()
                 Button(
                     onClick = {
-
+                        Log.d("Clicked", "createBizCard:Clicked ")
                     }
                 ) {
                     Text(text = "Portfolio",
@@ -80,9 +81,6 @@ fun createBizCard(){
                 }
                 
             }
-           
-            
-
         }
         
     }
